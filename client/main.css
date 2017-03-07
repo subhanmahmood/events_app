@@ -1,0 +1,14 @@
+/* CSS declarations go here */
+.light-text {
+  margin-left: 20px;
+  font-weight: 300;
+}
+
+.currentPage {
+  margin-left: 20px;
+
+}
+
+.content {
+  padding-top:64px;
+}
