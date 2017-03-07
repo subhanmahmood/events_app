@@ -27,3 +27,4 @@ fourseven:scss
 materialize:materialize@=0.97.7
 react-meteor-data
 alanning:roles
+natestrauser:animate-css
