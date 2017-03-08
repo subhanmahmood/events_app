@@ -11,6 +11,7 @@ import Signup from '../ui/components/auth/signup.jsx';
 import Dashboard from '../ui/components/dashboard/Dashboard';
 import Events from '../ui/components/events/Events';
 import AddEvent from '../ui/components/events/add-event';
+import ViewEvent from '../ui/components/dashboard/ViewEvent';
 
 FlowRouter.route('/', {
    name: 'home',
@@ -28,6 +29,16 @@ FlowRouter.route('/add-event', {
       mount(MainLayout, {
          content: <AddEvent/>,
          title: 'Add Event'
+      })
+   }
+});
+
+FlowRouter.route('/event/:id', {
+   name: 'view-event',
+   action(params) {
+      mount(MainLayout, {
+         content: <ViewEvent id={params}/>,
+         title: 'View Event'
       })
    }
 });
