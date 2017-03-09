@@ -34,10 +34,9 @@ FlowRouter.route('/add-event', {
 });
 
 FlowRouter.route('/event/:id', {
-   name: 'view-event',
    action(params) {
       mount(MainLayout, {
-         content: <ViewEvent id={params}/>,
+         content: <ViewEvent id={params.id}/>,
          title: 'View Event'
       })
    }

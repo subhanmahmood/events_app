@@ -15,8 +15,10 @@ export default class AddEvent extends Component {
 
       const title = ReactDOM.findDOMNode( this.refs.title ).value.trim( );
       const text = ReactDOM.findDOMNode( this.refs.text ).value.trim( );
+      const confirmed = [];
+      const apologies = []
 
-      Events.insert({ title: title, text: text });
+      Events.insert({ title: title, text: text , confirmed: confirmed, apologies: apologies});
 
       FlowRouter.go('/');
 

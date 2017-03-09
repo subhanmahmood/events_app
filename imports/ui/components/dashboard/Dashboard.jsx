@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
-
 import { Events } from '../../../api/events';
 
 import FixedActionButton from '.././fixed-action-button/FixedActionButton';
@@ -14,6 +13,8 @@ class Dashboard extends Component {
    }
 
    render( ) {
+      const currentUser = this.props.currentUser || ''
+      let isAdmin = currentUser && Roles.userIsInRole( currentUser, 'admin' );
       return (
          <div>
             <div className="row">
@@ -21,7 +22,9 @@ class Dashboard extends Component {
                   {this.renderEvents( )}
                </div>
             </div>
-            <FixedActionButton path="/add-event" iconName="add" color="red"/>
+            {isAdmin
+               ? <FixedActionButton path="/add-event" iconName="add" color="red"/>
+               : ''}
          </div>
 
       )
@@ -33,5 +36,8 @@ Dashboard.propTypes = {
 };
 
 export default createContainer( ( ) => {
-   return {events: Events.find({ }).fetch( )};
+   return {
+      events: Events.find({ }).fetch( ),
+      currentUser: Meteor.user( ) || {}
+   };
 }, Dashboard );
