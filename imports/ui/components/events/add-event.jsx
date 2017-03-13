@@ -7,20 +7,29 @@ import { Events } from '../../../api/events';
 
 export default class AddEvent extends Component {
    constructor( props ) {
-     super();
-   this.handleSubmit = this.handleSubmit.bind(this);
+      super( );
+      this.handleSubmit = this.handleSubmit.bind( this );
    }
    handleSubmit( event ) {
       event.preventDefault( );
 
       const title = ReactDOM.findDOMNode( this.refs.title ).value.trim( );
       const text = ReactDOM.findDOMNode( this.refs.text ).value.trim( );
-      const confirmed = [];
-      const apologies = []
+      const where = ReactDOM.findDOMNode( this.refs.where ).value.trim( );
+      const when = ReactDOM.findDOMNode( this.refs.when ).value.trim( );
+      const confirmed = [ ];
+      const apologies = [ ]
 
-      Events.insert({ title: title, text: text , confirmed: confirmed, apologies: apologies});
+      Events.insert({
+         title: title,
+         text: text,
+         where: where,
+         when: when,
+         confirmed: confirmed,
+         apologies: apologies
+      });
 
-      FlowRouter.go('/');
+      FlowRouter.go( '/' );
 
    }
    render( ) {
@@ -34,6 +43,12 @@ export default class AddEvent extends Component {
                         <div className="row">
                            <div className="col s12 input-field">
                               <input placeholder="Title" ref="title" type="text" className="validate"/>
+                           </div>
+                           <div className="col s12 input-field">
+                              <input placeholder="Where" ref="where" type="text" className="validate"/>
+                           </div>
+                           <div className="col s12 input-field">
+                              <input placeholder="When" ref="when" type="text" className="validate"/>
                            </div>
                            <div className="col s12 input-field">
                               <textarea id="textarea1" ref="text" className="materialize-textarea" placeholder="Description"></textarea>

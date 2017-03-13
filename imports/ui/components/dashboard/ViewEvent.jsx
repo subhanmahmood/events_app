@@ -67,6 +67,10 @@ ViewEvent = React.createClass({
                         <span className="card-title">{this.data.event.title}
                         </span>
                         <p>{this.data.event.text}</p>
+                        <p className="bold">Where</p>
+                        <p>{this.data.event.where}</p>
+                        <p className="bold">When</p>
+                        <p>{this.data.event.when}</p>
                      </div>
                   </div>
                </div>
