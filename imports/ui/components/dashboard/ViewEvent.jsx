@@ -2,14 +2,25 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import reactMixin from 'react-mixin';
+import $ from 'jquery';
 
 import { Events } from '../../../api/events';
 
 UserItem = React.createClass({
    render( ) {
+     console.log("Mounted");
       return (
-         <li className="collection-item">
-            {this.props.user.username}
+         <li>
+            <div className="collapsible-header">
+               {this.props.user.profile.first_name + " " + this.props.user.profile.last_name}
+            </div>
+            <div className="collapsible-body">
+               <span>
+                  {this.props.user.username}
+                  {this.props.user.profile.first_name}
+                  {this.props.user.profile.last_name}
+               </span>
+            </div>
          </li>
       )
    }
@@ -85,7 +96,7 @@ ViewEvent = React.createClass({
                         </span>
                      </div>
                   </div>
-                  <ul className="collection">
+                  <ul className="collapsible" data-collapsible="accordion">
                      {this.renderConfirmed( )}
                   </ul>
                </div>
@@ -98,14 +109,18 @@ ViewEvent = React.createClass({
                         </span>
                      </div>
                   </div>
-                  <ul className="collection">
-                     {this.renderApologies( )}
-                  </ul>
                </div>
 
             </div>
          </div>
       )
+   },
+   componentDidMount(){
+
+     $(document).ready(function(){
+       $('.collapsible').collapsible();
+       console.log("Collapsed");
+     });
    }
 });
 

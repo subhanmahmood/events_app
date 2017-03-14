@@ -9,10 +9,10 @@ export default class Login extends Component {
    }
    handleSubmit( event ) {
       event.preventDefault( );
-      const aimsID = this.refs.username.value;
+      const username = this.refs.username.value;
       const password = this.refs.password.value;
 
-      Meteor.loginWithPassword({ aimsID: aimsID, password: password });
+      Meteor.loginWithPassword( username, password );
       FlowRouter.go( '/' );
    }
    goToSigup( ) {
@@ -33,7 +33,7 @@ export default class Login extends Component {
                         <div className="row">
                            <div className="input-field col s12">
                               <label htmlFor="aimsID">AIMS ID</label>
-                              <input id="aimsID" type="text" ref="aimsID"/>
+                              <input id="aimsID" type="text" ref="username"/>
                            </div>
                         </div>
                         <div className="row">
