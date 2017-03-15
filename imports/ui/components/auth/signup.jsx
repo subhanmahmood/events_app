@@ -15,9 +15,21 @@ export default class Signup extends Component {
       const phone = this.refs.phone.value;
       const password = this.refs.password.value;
 
-      Accounts.createUser({ username: username, first_name: first_name, last_name: last_name, phone: phone, password: password });
+      Accounts.createUser({
+         username: username,
+         first_name: first_name,
+         last_name: last_name,
+         phone: phone,
+         password: password
+      }, ( error ) => {
+         if ( error ) {
+            Materialize.toast( error.reason, 4000 )
+         } else {
+           FlowRouter.go( '/' );
+         }
+      });
 
-      FlowRouter.go( '/' );
+
    }
    render( ) {
       return (

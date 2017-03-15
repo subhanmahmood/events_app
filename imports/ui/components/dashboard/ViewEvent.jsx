@@ -7,21 +7,17 @@ import $ from 'jquery';
 import { Events } from '../../../api/events';
 
 UserItem = React.createClass({
+   clicked( ) {
+      console.log( "clicked" );
+   },
    render( ) {
-     console.log("Mounted");
+      console.log( "Mounted" );
       return (
-         <li>
-            <div className="collapsible-header">
-               {this.props.user.profile.first_name + " " + this.props.user.profile.last_name}
-            </div>
-            <div className="collapsible-body">
-               <span>
-                  {this.props.user.username}
-                  {this.props.user.profile.first_name}
-                  {this.props.user.profile.last_name}
-               </span>
-            </div>
-         </li>
+         <tr>
+            <td>{this.props.user.profile.first_name + " " + this.props.user.profile.last_name}</td>
+            <td>{this.props.user.username}</td>
+            <td>{this.props.user.profile.phone}</td>
+         </tr>
       )
    }
 })
@@ -60,6 +56,7 @@ ViewEvent = React.createClass({
       return this.data.confirmed.map(( user ) => ( <UserItem key={user._id} user={user}/> ));
    },
    renderApologies( ) {
+
       return this.data.apologies.map(( user ) => ( <UserItem key={user._id} user={user}/> ));
    },
 
@@ -67,6 +64,10 @@ ViewEvent = React.createClass({
 
       if ( !this.data.ready ) {
          return <div>Loading...</div>;
+      }
+      let apologiesExist = true;
+      if ( this.data.event.apologies.length == 0 ) {
+         apologiesExist = false;
       }
 
       return (
@@ -96,9 +97,19 @@ ViewEvent = React.createClass({
                         </span>
                      </div>
                   </div>
-                  <ul className="collapsible" data-collapsible="accordion">
-                     {this.renderConfirmed( )}
-                  </ul>
+
+                  <table>
+                     <thead>
+                        <tr>
+                           <th data-field="name">Name</th>
+                           <th data-field="aims">AIMS ID</th>
+                           <th data-field="phone">Phone</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {this.renderConfirmed( )}
+                     </tbody>
+                  </table>
                </div>
 
                <div className="col s12 m6">
@@ -109,18 +120,31 @@ ViewEvent = React.createClass({
                         </span>
                      </div>
                   </div>
+
+                  {apologiesExist
+                     ? <table>
+                           <thead>
+                              <tr>
+                                 <th data-field="name">Name</th>
+                                 <th data-field="aims">AIMS ID</th>
+                                 <th data-field="phone">Phone</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {this.renderApologies( )}
+                           </tbody>
+                        </table>
+                     : <div className="center">
+                        <span className="card-title">
+                           No apolgies yet
+                        </span>
+                     </div>
+}
                </div>
 
             </div>
          </div>
       )
-   },
-   componentDidMount(){
-
-     $(document).ready(function(){
-       $('.collapsible').collapsible();
-       console.log("Collapsed");
-     });
    }
 });
 

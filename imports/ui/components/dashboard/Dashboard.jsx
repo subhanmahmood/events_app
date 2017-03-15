@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+  import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { Events } from '../../../api/events';

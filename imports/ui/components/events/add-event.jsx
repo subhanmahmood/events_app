@@ -4,6 +4,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import ReactDOM from 'react-dom';
 
 import { Events } from '../../../api/events';
+import { Messages } from '../../../api/messages';
 
 export default class AddEvent extends Component {
    constructor( props ) {
@@ -28,6 +29,8 @@ export default class AddEvent extends Component {
          confirmed: confirmed,
          apologies: apologies
       });
+
+      
 
       FlowRouter.go( '/' );
 
