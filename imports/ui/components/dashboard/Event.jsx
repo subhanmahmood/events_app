@@ -91,7 +91,7 @@ class Event extends Component {
                   Materialize.toast("You cannot give an apology when logged in as admin!", 2000);
             }
             if (!(this.ifUserAlreadyExists(currentUser._id, 'confirmed', this.props.event))) {
-                  Materialize.toast("You cannot give an pology when you have given a confirmation");
+                  Materialize.toast("You cannot give an apology when you have given a confirmation");
             } else {
                   if (apologies.length == 0) {
                         Events.update({

@@ -1,18 +1,28 @@
 /* CSS declarations go here */
+
 .light-text {
-  margin-left: 20px;
-  font-weight: 300;
+    margin-left: 20px;
+    font-weight: 300;
 }
 
 .currentPage {
-  margin-left: 20px;
-
+    margin-left: 20px;
 }
 
 .content {
-  padding-top:64px;
+    padding-top: 64px;
 }
 
 .preserve-spaces {
-  white-space: pre-line;
+    white-space: pre-line;
+}
+
+.bottom-input {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+}
+
+.messages {
+    height: 500px;
 }
