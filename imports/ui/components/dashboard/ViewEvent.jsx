@@ -70,6 +70,11 @@ ViewEvent = React.createClass({
          apologiesExist = false;
       }
 
+      let confirmedExist = true;
+      if ( this.data.event.confirmed.length == 0 ) {
+         confirmedExist = false;
+      }
+
       return (
          <div>
             <div className="row">
@@ -98,18 +103,25 @@ ViewEvent = React.createClass({
                      </div>
                   </div>
 
-                  <table>
-                     <thead>
-                        <tr>
-                           <th data-field="name">Name</th>
-                           <th data-field="aims">AIMS ID</th>
-                           <th data-field="phone">Phone</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        {this.renderConfirmed( )}
-                     </tbody>
-                  </table>
+                  {confirmedExist
+                     ? <table>
+                           <thead>
+                              <tr>
+                                 <th data-field="name">Name</th>
+                                 <th data-field="aims">AIMS ID</th>
+                                 <th data-field="phone">Phone</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {this.renderConfirmed( )}
+                           </tbody>
+                        </table>
+                     : <div className="center">
+                        <span className="card-title">
+                           No confirmations yet
+                        </span>
+                     </div>
+}
                </div>
 
                <div className="col s12 m6">
@@ -136,7 +148,7 @@ ViewEvent = React.createClass({
                         </table>
                      : <div className="center">
                         <span className="card-title">
-                           No apolgies yet
+                           No apologies yet
                         </span>
                      </div>
 }
