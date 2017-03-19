@@ -20,22 +20,24 @@ class Event extends Component {
                   .bind(this);
       }
       ifUserAlreadyExists(userId, collection, event) {
-            console.log(event);
             let array;
             if (collection == 'confirmed') {
                   array = event.apologies;
             } else if (collection == 'apologies') {
-                  const array = event.confirmed;
+                  array = event.confirmed;
             }
+            console.log(collection);
 
             console.log(array);
-            const IsInCollection = false;
+            let IsInCollection = false;
             for (i = 0; i < array.length; i++) {
+              console.log(array[i]);
                   if (array[i] == userId) {
-                        IsInCollection == true;
+                        IsInCollection = true;
+                        console.log("for " + IsInCollection);
                   }
             }
-            console.log(IsInCollection);
+            console.log("after " + IsInCollection);
             return IsInCollection;
       }
       deleteEvent() {
@@ -50,7 +52,7 @@ class Event extends Component {
             if (Meteor.users.findOne({_id: userId}).username == 'admin') {
                   Materialize.toast("You cannot confirm when logged in as admin!", 2000);
             }
-            if (!(this.ifUserAlreadyExists(currentUser._id, 'confirmed', this.props.event))) {
+            if ((this.ifUserAlreadyExists(currentUser._id, 'confirmed', this.props.event))) {
                   Materialize.toast("You cannot confirm when you have given an apology");
             } else {
                   if (confirmed.length == 0) {
@@ -90,7 +92,7 @@ class Event extends Component {
             if (Meteor.users.findOne({_id: userId}).username == 'admin') {
                   Materialize.toast("You cannot give an apology when logged in as admin!", 2000);
             }
-            if (!(this.ifUserAlreadyExists(currentUser._id, 'confirmed', this.props.event))) {
+            if ((this.ifUserAlreadyExists(currentUser._id, 'apologies', this.props.event))) {
                   Materialize.toast("You cannot give an apology when you have given a confirmation");
             } else {
                   if (apologies.length == 0) {

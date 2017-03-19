@@ -20,7 +20,10 @@ Accounts.onCreateUser( function( options, user ) {
 });
 
 Events.after.insert( function( userId, doc ) {
-   console.log( "before messages insert" );
    Messages.insert({eventId: doc._id, messages: [ ]});
-   console.log( "after messages insert" );
+});
+
+
+Events.after.remove( function( userId, doc ) {
+   Messages.remove({eventId: doc._id});
 });
