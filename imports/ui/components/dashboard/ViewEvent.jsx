@@ -11,7 +11,7 @@ UserItem = React.createClass({
       console.log( "clicked" );
    },
    render( ) {
-      console.log( "Mounted" );
+      console.log(this.props.user.profile.first_name);
       return (
          <tr>
             <td>{this.props.user.profile.first_name + " " + this.props.user.profile.last_name}</td>
@@ -77,7 +77,7 @@ ViewEvent = React.createClass({
 
       return (
          <div className="row">
-            <div className="col s12 m8">
+            <div className="col s12">
                <div>
                   <div className="row">
                      <div className="col s12 m12">
@@ -159,7 +159,7 @@ ViewEvent = React.createClass({
                   </div>
                </div>
             </div>
-            <div className="col s12 m4">
+            <div className="col s12">
                <div className="card grey lighten-2 messages">
                   <div className="card-content messages-container">
 
